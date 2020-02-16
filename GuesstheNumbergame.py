@@ -22,6 +22,7 @@ def check_if_new_number(number):
         print(f"you already chose {number}")
         raise ValueError
     else:
+        chosen_number_list.append(number)
         return number
 
     
@@ -53,15 +54,13 @@ def play_guess_the_number():
             #this is if the user guessed too small of a number
             elif int(chosen_number) < lucky_number:
                 print(f"{chosen_number} is too small")
-                chosen_numbers_list.append(chosen_number)
                 turn += 1
                 print(f"you have {5 - turn} turns left!")
                 sleep(1)
             
             #this is if the user guessed too big of a number
             elif int(chosen_number) > lucky_number:
-                print(f"{chosen_number} is too big")
-                chosen_numbers_list.append(chosen_number)
+                print(f"{chosen_number} is too big!")
                 turn += 1
                 print(f"you have {5 - turn} turns left!")
                 sleep(1)
