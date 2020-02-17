@@ -1,0 +1,28 @@
+# this app renames files that are listed in different sub-folders
+# so that the filename would have it's root folder's name
+# as a prefix. then, it moves all the files with their new names to a different folder, without any sub-folders.
+
+import os
+import shutil
+
+
+# the first function takes a parent source, that is, with double slash instead of one
+# meaning, don't use c:/ but c://
+
+
+def rename_files(parent_src):
+  for root, dirs, files in os.walk(parent_src):
+      if not files:
+          continue
+      prefix = os.path.basename(root)
+      for f in files:
+          os.rename(os.path.join(root, f), os.path.join(root, "{}_{}".format(prefix, f)))
+
+def move_files(src, dst):
+  for root, dirs, files in os.walk(src):
+      for file in files:
+          path_file = os.path.join(root, file)
+          shutil.copy2(path_file, dst)
+
+renamefiles("c://Users//Yarom//Downloads//contracts_new")
+move_files('C:/Users/Yarom/Downloads/contracts_new', 'c:/Users/Yarom/Documents/new_contracts')
